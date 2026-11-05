@@ -3,11 +3,11 @@ window.PORTFOLIO = {
   "profile": {
     "name": "Mohammed Suhail C S",
     "shortName": "Suhail",
-    "brand": "Mohammed Suhail C S",
+    "brand": "SUHAIL.CS",
     "role": "Cybersecurity professional",
     "email": "cssuhailmohammed@gmail.com",
-    "phone": "+91 8943440842",
-    "location": "Dubai ",
+    "phone": "",
+    "location": "Kerala, India",
     "availability": "Open to opportunities",
     "locationNote": "Exploring opportunities in Dubai & beyond",
     "siteUrl": "",
@@ -15,10 +15,10 @@ window.PORTFOLIO = {
     "seoDescription": "Mohammed Suhail C S is a cybersecurity professional with experience in penetration testing, security research, realistic vulnerable labs, cloud infrastructure and full-stack development."
   },
   "links": {
-    "linkedin": "www.linkedin.com/in/cssuhailmohammed",
-    "github": "https://github.com/mscs7",
-    "tryhackme": "https://tryhackme.com/p/ms070?utm_campaign=social_share&utm_medium=social&utm_content=profile&cardVersion=3f8fd9485548&utm_source=copy&sharerId=64df087090e35af977c0a0ca",
-    "hackthebox": "https://profile.hackthebox.com/profile/01a1a7b3-5ec7-70bf-a21f-87d231b8d333?utm_medium=copy_url",
+    "linkedin": "",
+    "github": "",
+    "tryhackme": "",
+    "hackthebox": "",
     "portswigger": ""
   },
   "hero": {
@@ -31,23 +31,23 @@ window.PORTFOLIO = {
     "description": "I'm Suhail, a cybersecurity professional working across offensive security, research and infrastructure. I build real applications, investigate their weaknesses, and turn that understanding into practical security work.",
     "primaryButton": "Explore my work",
     "secondaryButton": "Let's connect",
-    "footnote": "Former Senior Security Analyst"
+    "footnote": "Former Senior Security Analyst at Hackware Security Solutions"
   },
   "stats": [
     {
-      "value": "2+",
-      "label": "Years in cybersecurity",
-      "note": "Apr 2024 - Oct 2026; including internship"
-    },
-    {
       "value": "~10",
       "label": "Realistic vulnerable labs",
-      "note": "Researched and developed from scratch"
+      "note": "Developed from scratch"
     },
     {
-      "value": "VAPT",
-      "label": "Applications & infrastructure",
+      "value": "06",
+      "label": "Assessment domains",
       "note": "Web, API, network, internal, AD & cloud"
+    },
+    {
+      "value": "03",
+      "label": "Career stages",
+      "note": "Intern to Senior Security Analyst"
     }
   ],
   "about": {
@@ -219,6 +219,56 @@ window.PORTFOLIO = {
       "confidentiality": "Client findings and incident details remain confidential. Ransomware recovery is not included in my stated experience.",
       "repoUrl": "",
       "demoUrl": ""
+    },
+    {
+      "id": "wp-scope-workbench",
+      "category": "Tools",
+      "eyebrow": "WORDPRESS / SECURITY AUTOMATION",
+      "title": "WP Scope Workbench",
+      "summary": "A WordPress-focused Python assessment prototype combining scoped discovery, optional scanner integrations and evidence-based reporting.",
+      "visual": "security",
+      "image": "projects/wpscope/preview.png",
+      "imageAlt": "WP Scope Workbench project overview and synthetic assessment report preview.",
+      "tags": [
+        "Python",
+        "WordPress",
+        "Security automation"
+      ],
+      "scope": "A standalone assessment prototype for authorized WordPress environments, not a WordPress plugin. Combines bounded discovery, selected configuration checks, optional external scanner adapters and report generation. Demonstration reports use synthetic local data. Personal lab testing and external scanner validation are pending.",
+      "contributions": [
+        "Defined a unified WordPress assessment workflow based on practical VAPT requirements.",
+        "Used AI-assisted development to create the initial Python prototype, scanner adapters and reporting workflow.",
+        "Specified consolidated evidence reporting to reduce the need to review separate tool outputs manually."
+      ],
+      "outcome": "Packaged a command-line prototype with a reproducible local demonstration and TXT, JSON, HTML and DOCX reporting. Ready for personal lab evaluation; not yet validated for client assessments.",
+      "confidentiality": "Public examples contain synthetic demonstration data only. No client targets, credentials or confidential findings are included. Integrated third-party scanners retain their original authorship.",
+      "repoUrl": "",
+      "demoUrl": "https://mscs7.github.io/projects/wpscope/"
+    },
+    {
+      "id": "scopeforge",
+      "category": "Tools",
+      "eyebrow": "WEB / NETWORK / ACTIVE DIRECTORY REVIEW",
+      "title": "ScopeForge",
+      "summary": "A Python assessment workbench combining web discovery, network inventory, technology identification and read-only Active Directory export analysis.",
+      "visual": "security",
+      "image": "projects/scopeforge/preview.png",
+      "imageAlt": "ScopeForge project overview showing web, network and Active Directory review capabilities.",
+      "tags": [
+        "Python",
+        "Web and network security",
+        "AD audit"
+      ],
+      "scope": "An assessment prototype for authorized web and network environments, with offline analysis of read-only Active Directory exports. Includes technology and login-page discovery, API inventory, selected input diagnostics, optional scanner adapters and structured reporting. It is not a complete automated penetration test. Personal lab testing, external scanner execution and live AD collection still require validation.",
+      "contributions": [
+        "Defined requirements for a combined web, network and Active Directory assessment workbench.",
+        "Used AI-assisted development to create the initial Python implementation, reporting workflow and demonstration assets.",
+        "Prioritized evidence tracking, explicit coverage limitations and separation of observations from unverified vulnerability candidates."
+      ],
+      "outcome": "Packaged a prototype with web, network and AD-export analysis modes, synthetic demonstrations, automated tests and multi-format reports. Personal validation of the complete workflow and optional integrations is pending.",
+      "confidentiality": "Public reports use synthetic examples only. No real directory exports, client infrastructure details or confidential findings are published. Third-party tools and vulnerability databases retain their original attribution.",
+      "repoUrl": "",
+      "demoUrl": "https://mscs7.github.io/projects/scopeforge/"
     }
   ],
   "skills": [
