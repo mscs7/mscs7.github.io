@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>ScopeForge | ad-offline report</title><style>
+:root{--ink:#172c44;--muted:#566779;--accent:#2269d3;--line:#dbe3ee;color-scheme:light}*{box-sizing:border-box}
+body{margin:0;background:#f2f5f9;color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:32px auto;padding:0 24px}header{border-radius:18px;background:#102940;color:#fff;padding:36px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.12;letter-spacing:-.04em;margin:14px 0}h2{font-size:22px;line-height:1.3}h3{font-size:18px;line-height:1.4}
+.kicker{font-size:12px;letter-spacing:.15em;font-weight:700;color:#9dd9ff}header p{color:#d1dfef;overflow-wrap:anywhere}.banner{background:#f7e7b0;color:#473a17;padding:12px 16px;border-radius:8px;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}.stat,section{border:1px solid var(--line);border-radius:12px;background:white;padding:24px}
+.stat b{display:block;font-size:30px}.stat span,.muted{color:var(--muted);font-size:13px}section{margin:20px 0}section>h2{margin-top:0}
+.finding{border-top:1px solid var(--line);padding:20px 0}.finding:first-of-type{border-top:0}.badge{background:#e8f0fd;color:#194e97;padding:4px 10px;border-radius:6px;font-size:12px;text-transform:uppercase;font-weight:700}
+p{overflow-wrap:anywhere}td,th{padding:12px 10px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;table-layout:fixed}
+pre{padding:16px;background:#f4f7fb;font:12px/1.6 ui-monospace,Consolas,monospace;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:520px;overflow:auto}
+summary{cursor:pointer;font-weight:600;padding:10px 0}a{color:var(--accent)}footer{padding:20px 0;font-size:13px;color:var(--muted)}
+@media(max-width:640px){main{padding:0 12px;margin:12px auto}header{padding:24px}.grid{gap:8px}.stat{padding:12px}.stat b{font-size:24px}section{padding:18px}td,th{padding:8px 5px;font-size:12px}}
+@media print{body{background:white}main{max-width:none;margin:0;padding:0}header{background:white;color:#172c44}header p{color:#172c44}.finding{break-inside:avoid}pre{max-height:none}details{display:block}}
+</style></head><body><main>
+<header><div class="kicker">SCOPEFORGE / ASSESSMENT WORKBENCH</div><h1>Evidence. Not assumptions.</h1><p>training.example.invalid</p><p>SYNTHETIC-AD-DEMO | 2026-11-05T06:35:49+00:00<br>Prepared by Mohammed Suhail C S</p><div class="banner">SYNTHETIC DEMONSTRATION - not a real client assessment</div></header>
+<div class="grid"><div class="stat"><b>5</b><span>Observations / candidates</span></div><div class="stat"><b>7</b><span>Coverage entries</span></div><div class="stat"><b>0</b><span>Native HTTP evidence records</span></div></div>
+<section><h2>Assessment summary</h2><p>Workflow: complete within selected scope. Mode: ad-offline. 5 observations/candidates, 0 technology hints, 0 native HTTP evidence records. No exploitation was performed. Candidate findings and priorities require analyst review.</p><p class="muted">No findings does not mean secure. A skipped check is not a pass.</p></section>
+<section><h2>Observations and candidates</h2><article class="finding"><span class="badge">medium</span><h3>Default-domain password length below the review threshold</h3><p class="muted">SCF-F0A3A94F14 | observation | AD export</p><p><strong>Evidence:</strong> Default minimum: 10; chosen review threshold: 14.</p><p><strong>Action:</strong> Review organizational policy, MFA and applicable fine-grained password policies. The default does not necessarily apply to every user.</p><p class="muted">Evidence IDs: password_policy</p></article><article class="finding"><span class="badge">medium</span><h3>Enabled accounts do not require Kerberos pre-authentication</h3><p class="muted">SCF-BA03BC2632 | observation | AD export</p><p><strong>Evidence:</strong> 1 exported accounts. Examples: demo.legacy</p><p><strong>Action:</strong> Review exceptions and require pre-authentication unless an approved compatibility requirement exists.</p><p class="muted">Evidence IDs: users.does_not_require_preauth</p></article><article class="finding"><span class="badge">informational</span><h3>Non-expiring account passwords need owner review</h3><p class="muted">SCF-6B9BD90FCE | observation | AD export</p><p><strong>Evidence:</strong> 1 enabled accounts report password_never_expires=true.</p><p><strong>Action:</strong> Review account purpose, management and authentication controls; this is not automatically a vulnerability.</p><p class="muted">Evidence IDs: users.password_never_expires</p></article><article class="finding"><span class="badge">informational</span><h3>Potentially stale enabled accounts</h3><p class="muted">SCF-74DD9BA8E3 | observation | AD export</p><p><strong>Evidence:</strong> 1 accounts exceed 90 days based on exported LastLogonDate.</p><p><strong>Action:</strong> Verify activity and ownership before disabling; LastLogonDate is replicated/approximate and is not a complete sign-in history.</p><p class="muted">Evidence IDs: users.last_logon_date</p></article><article class="finding"><span class="badge">medium</span><h3>Non-domain-controller computers allow unconstrained delegation</h3><p class="muted">SCF-4A8B6A391A | observation | AD export</p><p><strong>Evidence:</strong> 1 exported computers. Examples: DEMO-APP01</p><p><strong>Action:</strong> Review necessity and reduce delegation scope. Domain controllers are deliberately excluded from this check.</p><p class="muted">Evidence IDs: computers.trusted_for_delegation</p></article></section>
+<section><h2>Coverage and limitations</h2><table><thead><tr><th>Module</th><th>Status</th><th>Scope</th></tr></thead><tbody><tr><td>AD domain</td><td>complete</td><td>1 records. Synthetic data, not a live domain.</td></tr><tr><td>AD password_policy</td><td>complete</td><td>1 records. Synthetic data, not a live domain.</td></tr><tr><td>AD users</td><td>complete</td><td>2 records. Synthetic data, not a live domain.</td></tr><tr><td>AD computers</td><td>complete</td><td>2 records. Synthetic data, not a live domain.</td></tr><tr><td>AD privileged_groups</td><td>complete</td><td>1 records. Synthetic data, not a live domain.</td></tr><tr><td>AD fine_grained_policies</td><td>complete</td><td>0 records. Synthetic data, not a live domain.</td></tr><tr><td>AD posture rules</td><td>complete</td><td>Read-only posture review on supplied records only. No credential testing or exploitation.</td></tr></tbody></table></section>
+<section><h2>Inventory</h2><details><summary>Ad (4)</summary><pre>{
+  &quot;record_counts&quot;: {
+    &quot;domain&quot;: 1,
+    &quot;password_policy&quot;: 1,
+    &quot;users&quot;: 2,
+    &quot;computers&quot;: 2,
+    &quot;privileged_groups&quot;: 1,
+    &quot;fine_grained_policies&quot;: 0
+  },
+  &quot;privileged_groups&quot;: [
+    {
+      &quot;name&quot;: &quot;Domain Admins&quot;,
+      &quot;direct_member_count&quot;: 2
+    }
+  ],
+  &quot;fine_grained_policy_count&quot;: 0,
+  &quot;not_assessed&quot;: [
+    &quot;ACL attack paths&quot;,
+    &quot;AD CS&quot;,
+    &quot;trust exploitation&quot;,
+    &quot;SMB/LDAP signing enforcement&quot;,
+    &quot;Kerberos exploitation&quot;,
+    &quot;credential attacks&quot;,
+    &quot;lateral movement&quot;,
+    &quot;domain takeover&quot;
+  ]
+}</pre></details></section>
+<section><h2>Evidence and operating policy</h2><details><summary>Native request ledger</summary><pre>[]</pre></details><details><summary>Scope and external tools</summary><pre>{
+  &quot;mode&quot;: &quot;offline read-only export review&quot;,
+  &quot;min_password_length_review_threshold&quot;: 14,
+  &quot;stale_account_review_days&quot;: 90,
+  &quot;input_sha256&quot;: &quot;a8f3b71718dc5fc9ccab59a6bc902484e93c6fe2d59632b4a1d1b9cb9221d792&quot;,
+  &quot;collected_at&quot;: &quot;2026-11-05T06:35:44.824464+00:00&quot;
+}
+[]</pre></details></section>
+<section><h2>Warnings and interpretation</h2><p>Automated, limited assessment. No findings does not mean secure; this is not a full VAPT or security certification.</p><p>Fingerprint/version hints, advisory matches and injection error signals require analyst validation.</p><p>No exploit execution, password spraying, credential dumping, persistence or lateral movement.</p><p>Read-only AD export analysis is not a complete AD penetration test. Missing data is not a pass.</p><p>Review reports for client-sensitive URLs, account names and infrastructure details before sharing.</p><p>Export permissions, search base, record caps and fine-grained password policy can limit conclusions. Privileged group membership alone is inventory, not a vulnerability.</p></section>
+<footer>ScopeForge 0.1.0 | Local report | Review and redact before sharing</footer></main></body></html>

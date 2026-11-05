@@ -1,0 +1,47 @@
+# Validation record - ScopeForge 0.1.0
+
+Date: 5 November 2026. Environment: Linux, CPython 3.13.5.
+
+## Executed
+
+- 100 pytest cases passed (unit tests, fixtures and loopback integration tests).
+- Native web demonstration: 23 HTTP evidence records; two observed password forms; one OpenAPI document; four technology hints.
+- Positive SQL and NoSQL diagnostic fixtures produced two unverified candidates. The negative fixture remained inconclusive.
+- Native TCP connect check found the open port on the local fixture.
+- Offline AD analyzer produced five posture observations/reviews from a synthetic export, excluding the demo domain controller from the unconstrained-delegation computer rule.
+- Local baseline comparison and synthetic Metasploit-shaped metadata search exercised the enrichment flow without external network requests.
+- TXT, JSON, HTML and DOCX generated successfully. DOCX rendered to three pages for visual inspection.
+- Package wheel built, installed in a separate virtual environment and exercised from outside the source directory. Installed-package web, TCP and AD demonstrations completed. CLI dependency check executed.
+- Showcase and HTML report rendered in Chromium at 1440, 390 and 320 pixel widths without horizontal overflow; desktop/mobile output inspected. HTML was rendered locally, not deployed to a live website.
+
+The synthetic HTTP fixture returns representative messages without a real SQL or NoSQL database. Therefore it tests orchestration and diagnostic interpretation, not exploitation or accuracy against production applications.
+
+## Not executed end to end
+
+- Nmap, Gobuster, DIRB and ffuf actual binary invocations: binaries unavailable in the build environment; installation/download attempts could not reach package sources.
+- Live NVD API requests: request/response handling tested with a mocked response, not the live service.
+- Full real Metasploit metadata catalogue: matching tested with representative records, not a downloaded current catalogue.
+- PowerShell collector against Windows AD: PowerShell, RSAT and a Windows domain were unavailable. Python-side parsing and audit rules were exercised with synthetic exports.
+- Real production targets, authenticated workflows, Windows runtime, macOS runtime and multi-user hosted deployment.
+
+GitHub Actions configuration is included for Python 3.10/3.12 on Windows and Ubuntu, but those CI jobs have not run merely because the configuration exists.
+
+## Reproduce
+
+```sh
+python -m pip install ".[docx,dev]"
+python -m pytest -q
+python -m scopeforge demo --out new-demo --formats txt,json,html,docx
+```
+
+After installing upstream scanner binaries, run the optional actual-binary loopback checks:
+
+```sh
+python scripts/check_external_tools.py --out external-checks
+```
+
+Exit 2 means none of the optional tools could be exercised; it is not a passing integration test. Inspect every status in `external-checks/validation.json`. No public target is used.
+
+## Release interpretation
+
+Working local prototype with explicit unverified integrations, not production-validated penetration testing software. Tests validate specified cases, not absence of defects. Keep real reports and AD exports out of public repositories.

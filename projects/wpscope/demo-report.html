@@ -1,0 +1,248 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>WP Scope | Assessment report</title><style>
+:root{color-scheme:light;--ink:#14263d;--muted:#536579;--line:#dce4ed;--accent:#1d5fc4}
+*{box-sizing:border-box}body{margin:0;background:#f2f5fa;color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1060px;margin:36px auto;padding:0 24px}header{padding:40px;background:#11263f;color:#fff;border-radius:18px}
+.kicker{font:600 12px/1.5 ui-monospace,monospace;letter-spacing:.14em;color:#9ec8ff}h1{font-size:clamp(28px,5vw,42px);line-height:1.12;margin:12px 0 18px}
+header p{color:#d1ddec;overflow-wrap:anywhere}.banner{background:#fff2cb;color:#564009;border-radius:8px;padding:12px 16px;margin-top:20px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}.stat,section{background:white;border:1px solid var(--line);border-radius:12px;padding:24px}.stat b{font-size:30px;display:block}.stat span{color:var(--muted);font-size:13px}
+section{margin:20px 0}h2{font-size:22px;margin:0 0 12px}h3{font-size:18px;margin:10px 0}p{margin:10px 0}.muted{color:var(--muted)}.finding{padding:24px 0;border-top:1px solid var(--line)}.finding:first-of-type{border:0}
+.badge{display:inline-block;padding:3px 9px;border-radius:5px;background:#e9f0fc;color:#174b93;font-size:12px;font-weight:700;text-transform:uppercase}.meta{font-size:13px;color:var(--muted)}
+code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}pre{background:#f4f7fb;border:1px solid var(--line);padding:18px;border-radius:8px;overflow:auto;max-height:500px;white-space:pre-wrap;overflow-wrap:anywhere}td,th{text-align:left;border-bottom:1px solid var(--line);padding:10px;font-size:14px;vertical-align:top}table{border-collapse:collapse;width:100%;table-layout:fixed}td,th{overflow-wrap:anywhere}a{color:var(--accent)}.url{overflow-wrap:anywhere}summary{cursor:pointer;font-weight:600;padding:8px 0}footer{font-size:12px;color:var(--muted);padding:24px 0}
+@media(max-width:640px){main{padding:0 12px;margin:12px auto}header{padding:24px}.grid{gap:8px}.stat{padding:14px}.stat b{font-size:24px}section{padding:18px}}
+@media print{body{background:white}main{max-width:none;margin:0;padding:0}header{border-radius:0}section,.finding{break-inside:avoid}details{display:block}pre{max-height:none}a{color:inherit}}
+</style></head><body><main>
+<header><div class="kicker">WP SCOPE / WORKBENCH 0.1</div><h1>Evidence before conclusions.</h1><p>http://127.0.0.1:45781/</p>
+<p>LOCAL-DEMO-NOT-A-CLIENT<br>Prepared by Mohammed Suhail C S | 2026-11-05T06:02:41+00:00</p><div class="banner">LOCAL SYNTHETIC DEMO - not a real client assessment</div></header>
+<div class="grid"><div class="stat"><b>8</b><span>Native HTTP requests</span></div><div class="stat"><b>4</b><span>Configuration observations</span></div><div class="stat"><b>0</b><span>Unverified advisory candidates</span></div></div>
+<section><h2>Assessment summary</h2><p>Workflow status: complete. WordPress indicators: observed. 8 native HTTP requests recorded; 4 configuration/hardening observations and 0 external advisory candidates. No exploitation was performed. All risk priorities are provisional until analyst review.</p><p class="muted">Automated baseline review. Not a full VAPT, exploitability verdict or certificate of security.</p></section>
+<section><h2>Observations and candidates</h2><article class="finding"><span class="badge">low</span>
+<h3>Browser hardening headers need review</h3><p class="meta">WPS-06739721EC | hardening observation | native | confidence: high</p>
+<p class="url"><strong>Endpoint:</strong> http://127.0.0.1:45781/</p><p><strong>Evidence:</strong> Not observed on the sampled HTML response: Content-Security-Policy (enforced); X-Content-Type-Options: nosniff.</p>
+<p><strong>Context:</strong> Defense-in-depth protections may be absent. This is not proof of XSS or a standalone exploit.</p><p><strong>Recommended action:</strong> Evaluate application-specific CSP and MIME types; stage changes before enforcing CSP and nosniff.</p>
+<p class="meta">Evidence: REQ-0001<br>References: https://owasp.org/www-project-secure-headers/</p></article><article class="finding"><span class="badge">low</span>
+<h3>No response-level framing restriction observed</h3><p class="meta">WPS-33650B020A | hardening observation | native | confidence: high</p>
+<p class="url"><strong>Endpoint:</strong> http://127.0.0.1:45781/</p><p><strong>Evidence:</strong> Neither X-Frame-Options nor an enforced CSP frame-ancestors directive was observed.</p>
+<p><strong>Context:</strong> Framing may be possible. Clickjacking impact depends on sensitive actions and must be manually assessed.</p><p><strong>Recommended action:</strong> Use an appropriate CSP frame-ancestors policy or X-Frame-Options after checking legitimate embedding requirements.</p>
+<p class="meta">Evidence: REQ-0001<br>References: https://owasp.org/www-project-secure-headers/</p></article><article class="finding"><span class="badge">informational</span>
+<h3>Assessment used an unencrypted HTTP endpoint</h3><p class="meta">WPS-3BFDA883C4 | scope observation | native | confidence: high</p>
+<p class="url"><strong>Endpoint:</strong> http://127.0.0.1:45781/</p><p><strong>Evidence:</strong> The selected target scheme is HTTP; no authenticated data was sent.</p>
+<p><strong>Context:</strong> HTTPS availability and redirect behavior on other origins were not tested.</p><p><strong>Recommended action:</strong> Assess the authorized HTTPS canonical URL; do not send credentials over HTTP.</p>
+<p class="meta">Evidence: REQ-0001<br>References: </p></article><article class="finding"><span class="badge">low</span>
+<h3>Directory index observed for the uploads path</h3><p class="meta">WPS-C24D2F2DEB | configuration observation | native | confidence: high</p>
+<p class="url"><strong>Endpoint:</strong> http://127.0.0.1:45781/wp-content/uploads/</p><p><strong>Evidence:</strong> HTTP 200 with an &#x27;Index of&#x27; heading and linked entries; response differs from the missing-path baseline. Listed files were not downloaded.</p>
+<p><strong>Context:</strong> Directory indexing can reveal filenames and content organization. Sensitivity and access intent require review.</p><p><strong>Recommended action:</strong> Disable directory indexing where unnecessary and verify access control for sensitive uploads.</p>
+<p class="meta">Evidence: REQ-0007, REQ-0003<br>References: </p></article></section>
+<section><h2>Coverage</h2><table><thead><tr><th>Module</th><th>Status</th><th>Scope</th></tr></thead><tbody><tr><td>reachability</td><td>complete</td><td>Homepage fetched with verified TLS when HTTPS was selected.</td></tr><tr><td>header_review</td><td>complete</td><td>Homepage response headers reviewed; findings are hardening observations.</td></tr><tr><td>wordpress_fingerprint</td><td>complete</td><td>WordPress indicators observed.</td></tr><tr><td>rest_discovery</td><td>complete</td><td>Public namespace inventory only; API exposure alone is not a vulnerability. Authorization and endpoints were not fuzzed.</td></tr><tr><td>wordpress_paths</td><td>complete</td><td>Five bounded path checks plus one missing-path baseline; no recursive discovery or secret-file extraction.</td></tr></tbody></table></section>
+<section><h2>Inventory and evidence</h2><details><summary>WordPress indicators and component hints</summary><pre>{
+  &quot;detected&quot;: true,
+  &quot;signals&quot;: [
+    &quot;HTML generator: WordPress DEMO&quot;,
+    &quot;WordPress asset paths referenced by the homepage&quot;,
+    &quot;WordPress REST discovery link&quot;,
+    &quot;WordPress REST schema with wp namespace&quot;
+  ],
+  &quot;version_hint&quot;: &quot;WordPress DEMO&quot;,
+  &quot;api_root&quot;: &quot;http://127.0.0.1:45781/wp-json/&quot;,
+  &quot;api_route_count&quot;: 3,
+  &quot;confidence&quot;: &quot;high&quot;
+}
+{
+  &quot;plugins&quot;: [
+    {
+      &quot;slug&quot;: &quot;training-store&quot;,
+      &quot;version_hint&quot;: &quot;0.1-demo&quot;,
+      &quot;source&quot;: &quot;homepage asset reference&quot;,
+      &quot;evidence_id&quot;: &quot;REQ-0001&quot;,
+      &quot;note&quot;: &quot;Presence/version hint only; may be cached, stale or vendor-modified.&quot;
+    }
+  ],
+  &quot;themes&quot;: [
+    {
+      &quot;slug&quot;: &quot;training-theme&quot;,
+      &quot;version_hint&quot;: &quot;0.1-demo&quot;,
+      &quot;source&quot;: &quot;homepage asset reference&quot;,
+      &quot;evidence_id&quot;: &quot;REQ-0001&quot;,
+      &quot;note&quot;: &quot;Presence/version hint only; may be cached, stale or vendor-modified.&quot;
+    }
+  ],
+  &quot;api_namespaces&quot;: [
+    &quot;wp/v2&quot;,
+    &quot;training/v1&quot;
+  ],
+  &quot;paths&quot;: [
+    {
+      &quot;path&quot;: &quot;wp-login.php&quot;,
+      &quot;status&quot;: 200,
+      &quot;soft_404_suspected&quot;: false,
+      &quot;evidence_id&quot;: &quot;REQ-0004&quot;,
+      &quot;note&quot;: &quot;A public login route is expected behavior, not a vulnerability.&quot;
+    },
+    {
+      &quot;path&quot;: &quot;xmlrpc.php&quot;,
+      &quot;status&quot;: 405,
+      &quot;soft_404_suspected&quot;: false,
+      &quot;evidence_id&quot;: &quot;REQ-0005&quot;,
+      &quot;note&quot;: &quot;GET only; XML-RPC methods, authentication and pingback were not exercised.&quot;
+    },
+    {
+      &quot;path&quot;: &quot;readme.html&quot;,
+      &quot;status&quot;: 200,
+      &quot;soft_404_suspected&quot;: false,
+      &quot;evidence_id&quot;: &quot;REQ-0006&quot;
+    },
+    {
+      &quot;path&quot;: &quot;wp-content/uploads/&quot;,
+      &quot;status&quot;: 200,
+      &quot;soft_404_suspected&quot;: false,
+      &quot;evidence_id&quot;: &quot;REQ-0007&quot;
+    },
+    {
+      &quot;path&quot;: &quot;robots.txt&quot;,
+      &quot;status&quot;: 200,
+      &quot;soft_404_suspected&quot;: false,
+      &quot;evidence_id&quot;: &quot;REQ-0008&quot;
+    }
+  ],
+  &quot;ports&quot;: []
+}</pre></details>
+<details><summary>Scope and operating limits</summary><pre>{
+  &quot;authorization_acknowledged&quot;: true,
+  &quot;origin_and_path&quot;: &quot;http://127.0.0.1:45781/&quot;,
+  &quot;allow_private&quot;: true,
+  &quot;native_rate_per_second&quot;: 5,
+  &quot;native_request_budget&quot;: 24,
+  &quot;per_request_timeout_seconds&quot;: 8,
+  &quot;response_sample_limit_bytes&quot;: 262144,
+  &quot;redirect_policy&quot;: &quot;exact origin and installation path only&quot;,
+  &quot;raw_response_bodies_saved&quot;: false,
+  &quot;pinned_addresses&quot;: [
+    &quot;127.0.0.1&quot;
+  ]
+}</pre></details>
+<details><summary>External tools</summary><pre>[]</pre></details>
+<details><summary>Native request ledger</summary><pre>[
+  {
+    &quot;id&quot;: &quot;REQ-0001&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:40+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/&quot;,
+    &quot;status&quot;: 200,
+    &quot;sample_bytes&quot;: 426,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;40038ac70fb6378efffc3096896d85f9fdad046abbe72eee5fa97d1b225730fb&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0002&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:40+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/wp-json/&quot;,
+    &quot;status&quot;: 200,
+    &quot;sample_bytes&quot;: 121,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;a93d9da8b7172fbb8f963107c34834e051bababb65666e74ae672f6bc68ff15d&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;application/json&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0003&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:40+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/wpscope-not-found-006ed217ff31f5fb&quot;,
+    &quot;status&quot;: 404,
+    &quot;sample_bytes&quot;: 45,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;1bbce63e23401ffc8314ea49084824291d1a441f39ca8bf440df44d35a3bb9c1&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0004&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:40+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/wp-login.php&quot;,
+    &quot;status&quot;: 200,
+    &quot;sample_bytes&quot;: 87,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;214b56aae05c2ef3c5e519988930eb465008852cf8a5ffe8b085ca2497637125&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0005&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:40+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/xmlrpc.php&quot;,
+    &quot;status&quot;: 405,
+    &quot;sample_bytes&quot;: 85,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;3c2df93c61af88acce9abc99a028fa022e280172347bbae7e1558f542d876983&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0006&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:41+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/readme.html&quot;,
+    &quot;status&quot;: 200,
+    &quot;sample_bytes&quot;: 48,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;cf1e3b1e8ed7baaad990a922ffe6f9254ca85543de96e1ba936d2df51169e56d&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0007&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:41+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/wp-content/uploads/&quot;,
+    &quot;status&quot;: 200,
+    &quot;sample_bytes&quot;: 158,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;ba974696dc446e384a51fa2773f4cac0fc622085d76e91ce1d5a0d22d688391b&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/html; charset=utf-8&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  },
+  {
+    &quot;id&quot;: &quot;REQ-0008&quot;,
+    &quot;time&quot;: &quot;2026-11-05T06:02:41+00:00&quot;,
+    &quot;method&quot;: &quot;GET&quot;,
+    &quot;url&quot;: &quot;http://127.0.0.1:45781/robots.txt&quot;,
+    &quot;status&quot;: 200,
+    &quot;sample_bytes&quot;: 35,
+    &quot;truncated&quot;: false,
+    &quot;sample_sha256&quot;: &quot;ee5cf1dce9b8ebaa7a825d00c21f07b9dad406370eb394b0205eda4665f0e769&quot;,
+    &quot;headers&quot;: {
+      &quot;server&quot;: &quot;WPScope-Local-Demo/0.1 Python/3.13.5&quot;,
+      &quot;content-type&quot;: &quot;text/plain&quot;
+    },
+    &quot;error&quot;: &quot;&quot;
+  }
+]</pre></details></section>
+<section><h2>Warnings and limitations</h2><p>Synthetic HTTP fixture for demonstrating workflow and reports; not a real WordPress deployment or assessment.</p><p>Unauthenticated baseline assessment, not a complete penetration test or security certification.</p><p>No password attacks, exploit execution, file uploads, state-changing API tests, or ransomware actions.</p><p>No exhaustive plugin inventory, authenticated authorization testing, business-logic testing, or TLS cipher audit.</p><p>Version hints and scanner advisory matches require manual verification; no exploitability is inferred.</p><p>HTTP errors, WAFs, redirects and request limits can leave checks incomplete. No findings does not mean secure.</p></section>
+<footer>WP Scope Workbench | Local report export | Review and redact before sharing</footer></main></body></html>

@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>ScopeForge | network report</title><style>
+:root{--ink:#172c44;--muted:#566779;--accent:#2269d3;--line:#dbe3ee;color-scheme:light}*{box-sizing:border-box}
+body{margin:0;background:#f2f5f9;color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:32px auto;padding:0 24px}header{border-radius:18px;background:#102940;color:#fff;padding:36px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.12;letter-spacing:-.04em;margin:14px 0}h2{font-size:22px;line-height:1.3}h3{font-size:18px;line-height:1.4}
+.kicker{font-size:12px;letter-spacing:.15em;font-weight:700;color:#9dd9ff}header p{color:#d1dfef;overflow-wrap:anywhere}.banner{background:#f7e7b0;color:#473a17;padding:12px 16px;border-radius:8px;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}.stat,section{border:1px solid var(--line);border-radius:12px;background:white;padding:24px}
+.stat b{display:block;font-size:30px}.stat span,.muted{color:var(--muted);font-size:13px}section{margin:20px 0}section>h2{margin-top:0}
+.finding{border-top:1px solid var(--line);padding:20px 0}.finding:first-of-type{border-top:0}.badge{background:#e8f0fd;color:#194e97;padding:4px 10px;border-radius:6px;font-size:12px;text-transform:uppercase;font-weight:700}
+p{overflow-wrap:anywhere}td,th{padding:12px 10px;vertical-align:top;text-align:left;border-bottom:1px solid var(--line);font-size:14px;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;table-layout:fixed}
+pre{padding:16px;background:#f4f7fb;font:12px/1.6 ui-monospace,Consolas,monospace;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:520px;overflow:auto}
+summary{cursor:pointer;font-weight:600;padding:10px 0}a{color:var(--accent)}footer{padding:20px 0;font-size:13px;color:var(--muted)}
+@media(max-width:640px){main{padding:0 12px;margin:12px auto}header{padding:24px}.grid{gap:8px}.stat{padding:12px}.stat b{font-size:24px}section{padding:18px}td,th{padding:8px 5px;font-size:12px}}
+@media print{body{background:white}main{max-width:none;margin:0;padding:0}header{background:white;color:#172c44}header p{color:#172c44}.finding{break-inside:avoid}pre{max-height:none}details{display:block}}
+</style></head><body><main>
+<header><div class="kicker">SCOPEFORGE / ASSESSMENT WORKBENCH</div><h1>Evidence. Not assumptions.</h1><p>127.0.0.1</p><p>SYNTHETIC-TCP-DEMO | 2026-11-05T06:35:49+00:00<br>Prepared by Mohammed Suhail C S</p><div class="banner">SYNTHETIC DEMONSTRATION - not a real client assessment</div></header>
+<div class="grid"><div class="stat"><b>0</b><span>Observations / candidates</span></div><div class="stat"><b>2</b><span>Coverage entries</span></div><div class="stat"><b>0</b><span>Native HTTP evidence records</span></div></div>
+<section><h2>Assessment summary</h2><p>Workflow: complete within selected scope. Mode: network. 0 observations/candidates, 0 technology hints, 0 native HTTP evidence records. No exploitation was performed. Candidate findings and priorities require analyst review.</p><p class="muted">No findings does not mean secure. A skipped check is not a pass.</p></section>
+<section><h2>Observations and candidates</h2><p>No observations within completed checks. This is not a security guarantee.</p></section>
+<section><h2>Coverage and limitations</h2><table><thead><tr><th>Module</th><th>Status</th><th>Scope</th></tr></thead><tbody><tr><td>TCP connect inventory</td><td>complete</td><td>1 approved ports on one IP; no UDP, exploit scripts or host sweep.</td></tr><tr><td>Service/version detection</td><td>skipped</td><td>Native engine does not identify software; use the optional Nmap engine for service probes.</td></tr></tbody></table></section>
+<section><h2>Inventory</h2><details><summary>Ports (1)</summary><pre>[
+  {
+    &quot;ip&quot;: &quot;127.0.0.1&quot;,
+    &quot;port&quot;: 42959,
+    &quot;protocol&quot;: &quot;tcp&quot;,
+    &quot;state&quot;: &quot;open&quot;,
+    &quot;service_hint&quot;: &quot;unknown&quot;,
+    &quot;hint_source&quot;: &quot;conventional port number only; no service identification&quot;,
+    &quot;error_type&quot;: &quot;&quot;
+  }
+]</pre></details></section>
+<section><h2>Evidence and operating policy</h2><details><summary>Native request ledger</summary><pre>[]</pre></details><details><summary>Scope and external tools</summary><pre>{
+  &quot;single_ip&quot;: &quot;127.0.0.1&quot;,
+  &quot;tcp_ports&quot;: [
+    42959
+  ],
+  &quot;method&quot;: &quot;TCP connect&quot;,
+  &quot;connect_timeout_seconds&quot;: 1.0,
+  &quot;service_version_detection&quot;: false,
+  &quot;delay_seconds&quot;: 0.2
+}
+[]</pre></details></section>
+<section><h2>Warnings and interpretation</h2><p>Automated, limited assessment. No findings does not mean secure; this is not a full VAPT or security certification.</p><p>Fingerprint/version hints, advisory matches and injection error signals require analyst validation.</p><p>No exploit execution, password spraying, credential dumping, persistence or lateral movement.</p><p>Read-only AD export analysis is not a complete AD penetration test. Missing data is not a pass.</p><p>Review reports for client-sensitive URLs, account names and infrastructure details before sharing.</p></section>
+<footer>ScopeForge 0.1.0 | Local report | Review and redact before sharing</footer></main></body></html>
