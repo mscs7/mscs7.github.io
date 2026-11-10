@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 650" role="img" aria-labelledby="title desc">
+<title id="title">Abstract cyber sentinel</title><desc id="desc">Original faceless geometric cyber illustration with a red illuminated visor, dark folded surfaces and orbital lines. Not a portrait.</desc>
+<defs>
+ <linearGradient id="body" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#43404b"/><stop offset=".3" stop-color="#15151f"/><stop offset=".7" stop-color="#090b13"/><stop offset="1" stop-color="#300e19"/></linearGradient>
+ <linearGradient id="hood" x1="0" x2="1"><stop stop-color="#151620"/><stop offset=".42" stop-color="#32303c"/><stop offset=".66" stop-color="#11141e"/><stop offset="1" stop-color="#680e23"/></linearGradient>
+ <linearGradient id="rim" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ff9c8f"/><stop offset=".28" stop-color="#ff3f54"/><stop offset=".7" stop-color="#bd1739"/><stop offset="1" stop-color="#140b15"/></linearGradient>
+ <linearGradient id="face" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#56515d"/><stop offset=".4" stop-color="#181b27"/><stop offset="1" stop-color="#060911"/></linearGradient>
+ <linearGradient id="visor" x1="0" x2="1"><stop stop-color="#8f102c"/><stop offset=".35" stop-color="#ff344d"/><stop offset=".65" stop-color="#ffb3a4"/><stop offset="1" stop-color="#fd3152"/></linearGradient>
+ <radialGradient id="halo"><stop stop-color="#e82948" stop-opacity=".45"/><stop offset=".5" stop-color="#b01732" stop-opacity=".2"/><stop offset="1" stop-color="#bd1b3d" stop-opacity="0"/></radialGradient>
+ <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".65" stop-color="white"/><stop offset="1" stop-color="black"/></linearGradient>
+ <mask id="vanish"><rect width="600" height="650" fill="url(#fade)"/></mask>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
+ <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<ellipse cx="340" cy="280" rx="235" ry="245" fill="url(#halo)"/>
+<g fill="none" stroke="#f03b54"><circle cx="320" cy="295" r="225" opacity=".15"/><circle cx="320" cy="295" r="210" stroke-dasharray="2 15" opacity=".38"/><path d="M107 219A225 225 0 0 1 395 82M490 146A225 225 0 0 1 527 383" stroke-width="2" opacity=".65"/></g>
+<g mask="url(#vanish)">
+ <path d="M103 596L139 474 211 428 233 386 218 306 235 190 284 137 344 121 400 164 431 246 410 347 383 392 407 424 484 473 522 618Z" fill="url(#body)" stroke="#57515e" stroke-opacity=".25"/>
+ <path d="M234 393L213 315 233 204 282 140 345 122 404 167 433 249 411 352 380 395 371 356 394 291 378 212 341 174 295 197 260 264 271 338 270 384Z" fill="url(#hood)"/>
+ <path d="M346 122L404 166 433 249 410 349 382 393 372 358 397 290 379 209 341 173 293 197 259 265" fill="none" stroke="url(#rim)" stroke-width="4"/>
+ <path d="M293 198L341 175 377 213 394 289 372 357 338 388 296 363 269 327 260 267Z" fill="url(#face)" stroke="#a69aa6" stroke-opacity=".15"/>
+ <path d="M268 252L378 226 387 265 282 291 266 274Z" fill="#06070e"/>
+ <path d="M266 260L378 237 383 247 278 278Z" fill="url(#visor)" filter="url(#glow)" opacity=".9"/>
+ <path d="M267 260L377 237 382 246 278 277Z" fill="url(#visor)"/>
+ <path d="M283 290L337 279 371 268 364 312 335 338 304 329Z" fill="#11151f"/>
+ <path d="M282 291L304 330 334 339 365 313M338 280L335 338M304 330L296 364" stroke="#766574" stroke-opacity=".44" fill="none"/>
+ <path d="M300 344L337 355 366 333 354 359 337 373 309 359Z" fill="#292431"/>
+ <path d="M316 346L337 351 356 340" fill="none" stroke="#ff5265" stroke-opacity=".8"/>
+ <path d="M233 387L269 384 312 415 338 389 377 382 407 425 351 476 299 459 254 477 213 429Z" fill="#171923" stroke="#574954" stroke-opacity=".3"/>
+ <path d="M238 405L290 457 272 577 190 512 150 477M397 412L351 475 376 590 445 520 481 477" fill="none" stroke="#574d59" stroke-width="2"/>
+ <path d="M350 476L382 446 408 425 485 474 523 618" fill="none" stroke="url(#rim)" stroke-width="3"/>
+ <path d="M213 429L139 475 105 596M270 382L297 408" fill="none" stroke="#d83350" stroke-opacity=".55"/>
+ <path d="M294 467L305 480 299 550M344 481L339 529" fill="none" stroke="#7d626d" stroke-width="3"/>
+ <path d="M383 493L420 474 438 491 401 512Z" fill="#24202b"/><path d="M400 492L420 483" stroke="#ff465e" stroke-width="2"/>
+</g>
+<g fill="none"><ellipse cx="314" cy="309" rx="261" ry="78" transform="rotate(-29 314 309)" stroke="#f56c7e" stroke-width="1" opacity=".45"/><path d="M91 413C105 433 200 404 287 353" stroke="#ff6275" stroke-width="2" opacity=".9"/></g>
+<circle cx="101" cy="407" r="4" fill="#ff6b7d"/><circle cx="528" cy="176" r="3" fill="#ffa6a4"/>
+<path d="M76 200v-22h22M510 401h22v-22" fill="none" stroke="#ff465e" opacity=".65"/>
+</svg>
