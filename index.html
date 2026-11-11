@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a090e">
-<meta name="description" content="Mohammed Suhail C S - application and network security, vulnerability research and practical engineering. Explore selected projects, experience and credentials.">
-<title>Mohammed Suhail C S | Cybersecurity &amp; Security Research</title>
+<title>Mohammed Suhail C S | Security Analyst &amp; Penetration Tester</title>
+<meta name="description" content="Mohammed Suhail C S is a cybersecurity professional experienced in VAPT, penetration testing, incident investigation, security research, network security and cloud infrastructure. Based in Dubai, UAE.">
 <link rel="canonical" href="https://mscs7.github.io/">
 <link rel="icon" href="assets/favicon-crimson.svg" type="image/svg+xml">
 <meta name="robots" content="index, follow">
@@ -21,8 +21,10 @@
   "description": "Cybersecurity professional focused on VAPT, application and network security, vulnerability research, security investigation and infrastructure.",
   "sameAs": ["https://www.linkedin.com/in/cssuhailmohammed/", "https://github.com/mscs7"]
 }</script>
-<meta property="og:title" content="Mohammed Suhail C S | Cybersecurity">
-<meta property="og:description" content="Security research. Practical engineering. Systems built and tested.">
+<meta property="og:title" content="Mohammed Suhail C S | Security Analyst &amp; Penetration Tester">
+<meta property="og:description" content="Explore the cybersecurity portfolio of Mohammed Suhail C S: VAPT, penetration testing, incident investigation, security research, infrastructure security and technical projects.">
+<meta name="twitter:title" content="Mohammed Suhail C S | Security Analyst &amp; Penetration Tester">
+<meta name="twitter:description" content="Cybersecurity portfolio featuring VAPT, investigation, security research and infrastructure engineering.">
 <meta property="og:type" content="website"><meta property="og:url" content="https://mscs7.github.io/">
 <link rel="stylesheet" href="styles.css?v=v3-20261111">
 <link rel="stylesheet" href="v3-visuals.css?v=v3-20261111">
@@ -31,8 +33,93 @@
 <script src="work-content.js?v=story-v2" defer></script>
 <script src="v3-visuals.js?v=v3-20261111" defer></script>
 <script src="app.js?v=v3-20261111" defer></script>
-<script src="hero-resume-fix-20261111.js?v=final-1" defer></script>
-<script src="hero-resume.js?v=1" defer></script>
+
+<style>
+/* Hero CTA system: three coordinated buttons, one shared visual language. */
+#home .hero-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(100%, 594px);
+  gap: 10px;
+  align-items: stretch;
+}
+#home .hero-actions .button {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-align: left;
+  border: 1px solid var(--line);
+  box-shadow: none;
+  transition: transform .22s ease, border-color .22s ease,
+              background .22s ease, box-shadow .22s ease;
+}
+#home .hero-actions .button > span {
+  flex: none;
+  font-size: 17px;
+  line-height: 1;
+  opacity: .9;
+}
+#home .hero-actions .button-primary {
+  color: #fff;
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  box-shadow: 0 8px 24px rgba(204, 25, 65, .14);
+}
+#home .hero-actions .button-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(204, 25, 65, .23);
+  transform: translateY(-2px);
+}
+#home .hero-actions .button-outline {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--line);
+}
+#home .hero-actions .button-outline:hover {
+  color: var(--text);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+#home .hero-actions .button:active { transform: translateY(0); }
+/* The full-sized Resume button lives in the hero, not About. */
+#resume-link { display: none !important; }
+@media (max-width: 980px) and (min-width: 681px) {
+  #home .hero-actions {
+    grid-template-columns: 1fr;
+    max-width: 335px;
+  }
+}
+@media (max-width: 680px) {
+  #home .hero-actions {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 440px;
+    gap: 10px;
+  }
+  #home .hero-actions .button {
+    min-height: 50px;
+    padding: 12px 17px;
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #home .hero-actions .button { transition: none; }
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -67,7 +154,11 @@
   <h1 id="hero-title">MOHAMMED<br><span>SUHAIL C S<span class="accent">.</span></span></h1>
   <p class="hero-statement" id="hero-statement">I build systems.<br><span>Then challenge their security.</span></p>
   <p class="hero-description" id="hero-description"></p>
-  <div class="hero-actions"><a class="button button-primary" href="#work" id="primary-cta">Explore my work <span aria-hidden="true">&#8599;</span></a><a class="button button-outline" href="#contact" id="secondary-cta">Let's connect <span aria-hidden="true">&#8594;</span></a></div>
+  <div class="hero-actions">
+    <a class="button button-primary" href="#work" id="primary-cta">Explore my work <span aria-hidden="true">&#8599;</span></a>
+    <a class="button button-outline" id="hero-resume-cta" href="Mohammed_Suhail_CS_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Resume PDF (opens in a new tab)">View Resume <span aria-hidden="true">&#8599;</span></a>
+    <a class="button button-outline" href="#contact" id="secondary-cta">Let's talk <span aria-hidden="true">&#8599;</span></a>
+  </div>
   <div class="hero-bottom"><span class="location"><span data-icon="pin"></span><span id="hero-location">Dubai, United Arab Emirates</span></span><div id="hero-socials" class="mini-socials" aria-label="Professional profiles"></div></div>
  </div>
  <div class="hero-art" id="hero-art">
@@ -117,5 +208,27 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <noscript><div class="noscript">This portfolio uses JavaScript to display the project list. Contact Mohammed Suhail C S at cssuhailmohammed@gmail.com.</div></noscript>
+<script>
+/* Use the configured Resume URL when available, with the published PDF as fallback. */
+window.addEventListener('load', function () {
+  const button = document.getElementById('hero-resume-cta');
+  const resumePath = window.PORTFOLIO?.profile?.resumeUrl;
+  if (button && typeof resumePath === 'string' && resumePath.trim()) {
+    try {
+      const url = new URL(resumePath.trim(), window.location.href);
+      if ((url.protocol === 'https:' || url.protocol === 'http:') && !url.username && !url.password) {
+        button.href = url.href;
+      }
+    } catch (_) { /* Keep the working default PDF path. */ }
+  }
+  const contact = document.getElementById('secondary-cta');
+  if (contact) {
+    contact.href = '#contact';
+    contact.removeAttribute('target');
+    contact.removeAttribute('rel');
+    contact.innerHTML = 'Let\'s talk <span aria-hidden="true">&#8599;</span>';
+  }
+}, { once: true });
+</script>
 </body>
 </html>
