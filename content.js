@@ -8,7 +8,7 @@ window.PORTFOLIO = {
     "email": "cssuhailmohammed@gmail.com",
     "phone": "+971 588 692310",
     "location": "Abu Dhabi, United Arab Emirates",
-    "availability": "Open to opportunities",
+    "availability": "Open to Cybersecurity Opportunities",
     "locationNote": "Exploring opportunities in Dubai & beyond",
     "siteUrl": "",
     "resumeUrl": "https://mscs7.github.io/Mohammed_Suhail_CS_CV.pdf",
