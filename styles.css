@@ -119,3 +119,64 @@ html { scrollbar-width: thin; scrollbar-color: #a42c4c var(--bg); }
 .rail-dot{width:9px;height:9px;background:var(--bg);border-color:var(--soft)}
 .rail-stop.active .rail-dot,.rail-stop:hover .rail-dot,.rail-stop:focus-visible .rail-dot {box-shadow:0 0 0 3px var(--accent-soft),0 0 12px var(--glow)}
 @media (max-width:1199px),(pointer:coarse){.section-rail{display:none}}
+
+/* Larger cybersecurity opportunity badge */
+.hero .status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.hero .status-pill:hover {
+  transform: translateY(-2px);
+  background: var(--accent-soft);
+  box-shadow: 0 0 18px rgba(230, 30, 72, 0.14);
+}
+
+/* Animated status indicator */
+.hero .status-pill .status-dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: opportunity-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes opportunity-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(230, 30, 72, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(230, 30, 72, 0);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 680px) {
+  .hero .status-pill {
+    font-size: 12px;
+    min-height: 40px;
+    padding: 9px 15px;
+  }
+}
+
+/* Respect accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero .status-pill .status-dot {
+    animation: none;
+  }
+}
