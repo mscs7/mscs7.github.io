@@ -30,7 +30,7 @@ window.PORTFOLIO = {
       "Then challenge",
       "their security."
     ],
-    "description": "I'm Suhail, a cybersecurity professional working across offensive security, research and infrastructure. I build real applications, investigate their weaknesses, and turn that understanding into practical security work.",
+    "description": "I'm Mohammed Suhail, a cybersecurity professional working across offensive security, research and infrastructure. I build real applications, investigate their weaknesses, and turn that understanding into practical security work.",
     "primaryButton": "Explore my work",
     "secondaryButton": "Let's connect",
     "footnote": "Former Senior Security Analyst at Hackware Security Solutions"
