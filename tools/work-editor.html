@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Work editor | Mohammed Suhail C S</title>
+<link rel="stylesheet" href="work-editor.css">
+<script src="../content.js" defer></script><script src="../work-content.js" defer></script><script src="work-editor.js" defer></script>
+</head>
+<body>
+<header class="edit-header"><div><a href="../index.html#work" class="edit-back">← BACK TO WEBSITE</a><span class="edit-kicker">SUHAIL.CS / LOCAL CONTENT TOOL</span><h1>Edit your <em>work stories.</em></h1><p>Change titles, summaries, technologies, project links and the detailed case studies. This editor saves nothing online; export the updated <code>content.js</code> when finished.</p></div><button class="export" id="export" type="button">Download updated content.js ↓</button></header>
+<div class="edit-notice" role="note">The visual design stays in <code>v3-visuals.js</code>. Never change a project ID casually: its link is based on that ID. Your existing <code>work-content.js</code> is retained as a fallback. This editor exports the complete merged <code>content.js</code>.</div>
+<div class="edit-layout"><aside class="edit-projects" aria-label="Choose a project"><label for="search">FIND A WORK PAGE</label><input id="search" type="search" placeholder="Search a project..."/><div id="project-list"></div></aside><main class="edit-form"><div class="edit-form-head"><p id="selected-category" class="kicker">SELECT A PROJECT</p><h2 id="selected-title">Select a work page</h2><p id="selected-id"></p></div><div id="fields"></div></main></div>
+<div class="edit-status" id="status" role="status" aria-live="polite"></div>
+<footer>Changes are only in your current browser session until you download and upload <code>content.js</code> to GitHub. Do not add client secrets to public case studies.</footer>
+</body></html>
