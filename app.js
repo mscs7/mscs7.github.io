@@ -198,7 +198,35 @@
   heroArt.addEventListener('pointermove',e=>{if(!motion||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;const r=heroArt.getBoundingClientRect();heroArt.style.setProperty('--art-y',`${(e.clientX-r.left-r.width/2)/r.width*5}deg`);heroArt.style.setProperty('--art-x',`${-(e.clientY-r.top-r.height/2)/r.height*4}deg`);});
   heroArt.addEventListener('pointerleave',()=>{heroArt.style.setProperty('--art-x','0deg');heroArt.style.setProperty('--art-y','0deg');});
   document.addEventListener('pointerdown',e=>{if(!motion)return;const button=e.target.closest('.button');if(!button)return;const r=button.getBoundingClientRect(),size=Math.max(r.width,r.height);const dot=document.createElement('span');dot.className='ripple';dot.setAttribute('aria-hidden','true');dot.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px`;button.append(dot);setTimeout(()=>dot.remove(),600);});
-  let scrollPending=false;const sectionIds=['work','about','expertise','journey','contact'];
-  function onScroll(){const max=document.documentElement.scrollHeight-innerHeight;$('#progress').style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;let active='';sectionIds.forEach(id=>{if($('#'+id).getBoundingClientRect().top<innerHeight*.4)active=id;});$$('a',nav).forEach(a=>{const current=a.getAttribute('href')==='#'+active;a.classList.toggle('active',current);if(current)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});scrollPending=false;}
-  addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(onScroll);}},{passive:true});onScroll();
+  // Section-aware vertical navigation. Keep native scrollbar usable for mouse, touch and keyboard.
+  let scrollPending=false;
+  const sectionIds=['home','work','about','expertise','journey','contact'];
+  const railLinks=$$('.rail-stop', $('#section-rail'));
+  function onScroll(){
+    const max=document.documentElement.scrollHeight-innerHeight;
+    $('#progress').style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
+    const anchor=scrollY+innerHeight*.40;
+    const tops=sectionIds.map(id=>{const el=$('#'+id);return el?el.getBoundingClientRect().top+scrollY:0;});
+    let activeIndex=0;
+    tops.forEach((top,i)=>{if(anchor>=top)activeIndex=i;});
+    const next=Math.min(activeIndex+1,sectionIds.length-1);
+    const between=next===activeIndex?0:Math.max(0,Math.min(1,(anchor-tops[activeIndex])/Math.max(1,tops[next]-tops[activeIndex])));
+    const percent=next===activeIndex?100:((activeIndex+between)/(sectionIds.length-1))*100;
+    const railFill=$('#section-rail-fill');if(railFill)railFill.style.height=`calc((100% - 68px) * ${percent/100})`;
+    railLinks.forEach((a,i)=>{
+      const active=i===activeIndex;
+      a.classList.toggle('active',active);
+      if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');
+    });
+    const active=sectionIds[activeIndex];
+    $$('a',nav).forEach(a=>{
+      const current=a.getAttribute('href')==='#'+active;
+      a.classList.toggle('active',current);
+      if(current)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');
+    });
+    scrollPending=false;
+  }
+  addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(onScroll);}},{passive:true});
+  addEventListener('resize',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(onScroll);}},{passive:true});
+  onScroll();
 })();
