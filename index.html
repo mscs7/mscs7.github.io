@@ -35,86 +35,118 @@
 <script src="app.js?v=v3-20261111" defer></script>
 
 <style>
-/* Hero CTA system: three coordinated buttons, one shared visual language. */
+/* HERO REFINEMENT (11 Nov 2026)
+   Two aligned CTAs plus an unobtrusive contact link at every screen width.
+   Names and links remain managed by existing content/site config. */
+#home #hero-title {
+  font-size: clamp(3.05rem, 5.7vw, 5.7rem);
+  letter-spacing: -.062em;
+}
+/* The application renderer sometimes reintroduces the decorative dot;
+   hide it here without touching the rest of the theme. */
+#home #hero-title .accent { display: none !important; }
 #home .hero-actions {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: min(100%, 594px);
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
+  row-gap: 12px;
   align-items: stretch;
+  width: min(100%, 476px);
 }
 #home .hero-actions .button {
   box-sizing: border-box;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
   width: 100%;
   min-width: 0;
   min-height: 54px;
-  padding: 13px 16px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.25;
+  padding: 13px 18px;
+  gap: 10px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.2;
   letter-spacing: 0;
+  font-weight: 700;
   white-space: nowrap;
-  text-align: left;
-  border: 1px solid var(--line);
-  box-shadow: none;
-  transition: transform .22s ease, border-color .22s ease,
-              background .22s ease, box-shadow .22s ease;
+  text-decoration: none;
+  transition: transform .22s ease, background-color .22s ease,
+              border-color .22s ease, box-shadow .22s ease;
 }
 #home .hero-actions .button > span {
   flex: none;
   font-size: 17px;
   line-height: 1;
-  opacity: .9;
 }
-#home .hero-actions .button-primary {
+#home #primary-cta {
   color: #fff;
   background: var(--accent-strong);
-  border-color: var(--accent-strong);
-  box-shadow: 0 8px 24px rgba(204, 25, 65, .14);
+  border: 1px solid var(--accent-strong);
+  box-shadow: 0 8px 24px rgba(227, 35, 71, .16);
 }
-#home .hero-actions .button-primary:hover {
+#home #primary-cta:hover {
   background: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 10px 30px rgba(204, 25, 65, .23);
+  box-shadow: 0 11px 28px rgba(227, 35, 71, .22);
   transform: translateY(-2px);
 }
-#home .hero-actions .button-outline {
+#home #hero-resume-cta {
   color: var(--text);
   background: var(--surface);
-  border-color: var(--line);
+  border: 1px solid var(--accent);
+  box-shadow: none;
 }
-#home .hero-actions .button-outline:hover {
-  color: var(--text);
+#home #hero-resume-cta:hover {
   background: var(--accent-soft);
-  border-color: var(--accent);
   transform: translateY(-2px);
 }
-#home .hero-actions .button:active { transform: translateY(0); }
-/* The full-sized Resume button lives in the hero, not About. */
+/* A separate understated third action, matching the layout you preferred. */
+#home #secondary-cta {
+  grid-column: 1 / -1;
+  justify-self: start;
+  width: auto;
+  min-height: 32px;
+  padding: 3px 2px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+  font-size: 13px;
+  gap: 10px;
+}
+#home #secondary-cta:hover {
+  color: var(--accent);
+  background: transparent;
+  box-shadow: none;
+  transform: translateX(3px);
+}
+#home .hero-actions a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+/* Keep the public hero CV action; hide the redundant About link. */
 #resume-link { display: none !important; }
-@media (max-width: 980px) and (min-width: 681px) {
-  #home .hero-actions {
-    grid-template-columns: 1fr;
-    max-width: 335px;
-  }
+@media (max-width: 1150px) {
+  #home #hero-title { font-size: clamp(3rem, 5.95vw, 4.9rem); }
+}
+@media (max-width: 850px) {
+  #home #hero-title { font-size: clamp(2.5rem, 6.4vw, 3.7rem); }
 }
 @media (max-width: 680px) {
-  #home .hero-actions {
-    grid-template-columns: 1fr;
-    width: 100%;
-    max-width: 440px;
-    gap: 10px;
-  }
+  #home #hero-title { font-size: clamp(2.35rem, 10.6vw, 4rem); }
+  #home .hero-actions { width: 100%; max-width: 476px; gap: 10px; }
   #home .hero-actions .button {
     min-height: 50px;
-    padding: 12px 17px;
+    padding: 12px 13px;
+    gap: 8px;
     font-size: 12px;
   }
+  #home #secondary-cta { min-height: 31px; padding: 2px 2px; font-size: 12px; }
+}
+@media (max-width: 360px) {
+  #home #hero-title { font-size: 10.3vw; }
+  #home .hero-actions .button { font-size: 11px; padding: 12px 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   #home .hero-actions .button { transition: none; }
@@ -151,13 +183,13 @@
   <span id="availability">Open to Cybersecurity Opportunities</span>
   </a>
   <p class="eyebrow" id="hero-eyebrow">CYBERSECURITY / RESEARCH / ENGINEERING</p>
-  <h1 id="hero-title">MOHAMMED<br><span>SUHAIL C S<span class="accent">.</span></span></h1>
+  <h1 id="hero-title">MOHAMMED<br><span>SUHAIL C S</span></h1>
   <p class="hero-statement" id="hero-statement">I build systems.<br><span>Then challenge their security.</span></p>
   <p class="hero-description" id="hero-description"></p>
   <div class="hero-actions">
     <a class="button button-primary" href="#work" id="primary-cta">Explore my work <span aria-hidden="true">&#8599;</span></a>
     <a class="button button-outline" id="hero-resume-cta" href="Mohammed_Suhail_CS_CV.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Resume PDF (opens in a new tab)">View Resume <span aria-hidden="true">&#8599;</span></a>
-    <a class="button button-outline" href="#contact" id="secondary-cta">Let's talk <span aria-hidden="true">&#8599;</span></a>
+    <a class="button" href="#contact" id="secondary-cta">Let's talk <span aria-hidden="true">&#8599;</span></a>
   </div>
   <div class="hero-bottom"><span class="location"><span data-icon="pin"></span><span id="hero-location">Dubai, United Arab Emirates</span></span><div id="hero-socials" class="mini-socials" aria-label="Professional profiles"></div></div>
  </div>
