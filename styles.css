@@ -11,3 +11,50 @@ html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *:
 @media(max-width:420px){.projects-grid{grid-template-columns:1fr}.project-image{aspect-ratio:16/9}.project-content{padding:23px}.project-card h3{font-size:23px}.project-eyebrow{font-size:8px}.project-summary{font-size:12px}.project-footer{padding-top:23px}.project-open{font-size:11px}.project-status{font-size:8px}.tag{font-size:9px}.diagram-label{font-size:7px;left:15px;top:15px}.diagram-lab{width:75%;gap:10px}.diagram-node{font-size:8px;padding:12px 9px}.diagram-node .icon{width:12px;height:12px}.diagram-window{width:75%;padding:12px}.window-content b{font-size:10px}.window-boxes span{padding:9px 7px;font-size:7px}.diagram-network{width:77%}.network-row span{font-size:7px;padding:10px 5px}.diagram-network .network-head{font-size:8px}.network-row{gap:10px}.network-row .icon{width:19px;height:19px}.diagram-security{gap:20px}.diagram-security>.icon{width:55px;height:55px}.security-lines{font-size:8px;gap:11px}.project-number{font-size:8px;right:10px;top:10px}.hero-art{height:370px}.expertise-grid{grid-template-columns:1fr}.expertise-card{padding:26px}.expertise-card h3{font-size:23px}.expertise-card p{font-size:12px}.expertise-card .tag{font-size:9px}.expertise-top{margin-bottom:20px}.contact-email{font-size:15px}.form-row{grid-template-columns:1fr;gap:0}.hero-footer>span{max-width:170px}.hero-footer .scroll-cue{font-size:6px}.hero h1{font-size:11.8vw}.hero .eyebrow{font-size:7px}.hero-statement{font-size:19px}.stat-value{font-size:28px}.stat-label{font-size:9px}.stat-note{font-size:7px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.motion-enabled .reveal.is-pending{opacity:1;transform:none}.hero-art{transform:none!important}}
 @media print{#ambient,.ambient-gradient,.site-header,.reading-progress,.hero-art,.contact-form,.hero-actions,.scroll-cue,.project-open,.icon-button,.toast{display:none!important}body{background:white;color:black}.wrap{width:100%}.hero{display:block;min-height:0;padding:0}.section{padding:25px 0}.project-card,.expertise-card,.credential{break-inside:avoid}.reveal{opacity:1!important;transform:none!important}.project-image{display:none}.projects-grid{grid-template-columns:1fr 1fr}.hero-copy{padding:0}}
+
+
+/* Portrait treatment: user's original photograph, CSS-only editorial framing (not a fabricated face). */
+.hero-art.has-portrait { isolation:isolate; }
+.hero-art.has-portrait .art-halo{background:radial-gradient(circle at 54% 42%,rgba(235,61,85,.28),transparent 65%)}
+.portrait-panel{position:absolute;z-index:1;inset:9% 12% 6%;border-radius:44% 44% 22% 22% / 40% 40% 14% 14%;background:radial-gradient(ellipse at 50% 38%,#faebdf 0 37%,#ede0d7 38% 44%,transparent 68%);transform:rotate(-7deg);opacity:0;pointer-events:none}
+.portrait-paint{position:absolute;z-index:1;inset:10% 4% 7%;pointer-events:none;opacity:0;}
+.portrait-paint i{position:absolute;display:block;width:95%;height:66%;left:3%;top:12%;border:19px solid #f5e7d7;border-right-color:transparent;border-left-color:#ede0d2;border-radius:52% 47% 43% 50%;transform:rotate(25deg);filter:drop-shadow(0 9px 5px rgba(0,0,0,.08))}
+.portrait-paint i:nth-child(2){width:86%;height:64%;left:5%;top:14%;border-width:6px;border-color:transparent #fff0dc transparent #f7eddf;transform:rotate(-15deg);opacity:.85}
+.portrait-paint i:nth-child(3){width:77%;height:63%;top:13%;left:11%;border-width:11px;border-left-color:transparent;border-top-color:transparent;border-bottom-color:#f6e9d8;transform:rotate(22deg)}
+.hero-art.has-portrait .portrait-panel,.hero-art.has-portrait .portrait-paint{opacity:1}
+.hero-art.has-portrait .cyber-avatar{position:absolute;z-index:2;inset:12% 8% auto;width:84%;height:78%;margin:0;border:0;border-radius:44% 44% 18% 18% / 39% 39% 13% 13%;object-fit:cover;object-position:center 20%;filter:contrast(1.17) saturate(1.03) drop-shadow(0 15px 25px rgba(0,0,0,.25));box-shadow:0 15px 38px rgba(0,0,0,.23);outline:1px solid rgba(255,216,211,.16)}
+.hero-art.has-portrait .cyber-avatar::after{content:''}
+.hero-art.has-portrait .orbital{z-index:0;opacity:.15}
+.hero-art.has-portrait .art-grid{opacity:.20}
+.hero-art.has-portrait .art-coordinates{z-index:4;left:14%;top:3%;color:var(--muted)}
+.hero-art.has-portrait .floating-label{z-index:4}
+.hero-art.has-portrait .floating-label.label-bottom{bottom:11%}
+.hero-art.has-portrait #art-caption{display:block;z-index:5;bottom:3%;font-size:7px}
+.hero-art.has-portrait .art-caption[hidden]{display:block!important}
+/* Fine-grained photo illustration tone: browser overlay, original file stays untouched. */
+.hero-art.has-portrait::after{content:'';position:absolute;z-index:3;inset:12% 8% 10%;border-radius:44% 44% 18% 18% / 39% 39% 13% 13%;pointer-events:none;background:linear-gradient(125deg,transparent 43%,rgba(228,92,72,.10) 66%,transparent 83%),repeating-linear-gradient(118deg,transparent 0 7px,rgba(20,10,20,.018) 8px 9px);mix-blend-mode:multiply}
+/* Work links open shareable pages rather than dialogs. */
+.project-open{font-weight:750;color:var(--text);text-decoration:none}
+.project-card .project-open::after{content:'';position:absolute;inset:0;z-index:3;}
+.project-open:focus-visible{outline:3px solid var(--accent);outline-offset:6px;border-radius:3px}
+/* Contact: easy-to-scan channel icons, with separate browser-based Gmail and Outlook drafts. */
+.contact-layout{align-items:start;gap:50px}
+.contact-connect{border:1px solid var(--line);border-radius:18px;padding:38px;background:linear-gradient(135deg,color-mix(in srgb,var(--surface),var(--accent) 3%),var(--surface));box-shadow:var(--shadow);position:relative;overflow:hidden}
+.contact-connect::after{content:'';position:absolute;width:270px;height:270px;border-radius:50%;right:-190px;top:-180px;border:55px solid var(--accent-soft);pointer-events:none}
+.contact-panel-label{font-size:10px;letter-spacing:.13em;color:var(--accent);margin:0 0 22px}
+.contact-connect h3{font-family:var(--display);font-weight:800;font-size:clamp(27px,3vw,44px);letter-spacing:-.045em;line-height:1.16;margin-bottom:13px}
+.contact-connect>p:not(.contact-panel-label){font-size:12px;line-height:1.85;color:var(--muted);margin:0 0 27px}
+.contact-icon-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.contact-channel{position:relative;min-height:135px;border:1px solid var(--line);background:var(--surface-2);padding:18px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;border-radius:10px;text-decoration:none;transition:transform .25s,border-color .25s,background .25s}
+.contact-channel:hover,.contact-channel:focus-visible{transform:translateY(-4px);border-color:var(--accent);background:var(--accent-soft);outline:none}
+.contact-channel .channel-icon{width:32px;height:32px;display:inline-grid;place-items:center;margin-bottom:8px}
+.channel-icon svg{display:block;width:32px;height:32px}
+.contact-channel strong{font-size:14px;color:var(--text)}
+.contact-channel small{font-size:10px;color:var(--muted)}
+.channel-arrow{position:absolute;top:16px;right:18px;color:var(--accent);font-size:19px}
+.contact-footer-note{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:10px;line-height:1.8;color:var(--muted);display:flex;align-items:center;gap:10px}
+.pulse-small{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);flex:none}
+.contact-socials[hidden]{display:none!important}
+@media(max-width:680px){.hero-art.has-portrait .cyber-avatar{inset:10% 10% auto;width:80%;height:79%;object-position:center 22%}.hero-art.has-portrait::after{inset:10% 10% 11%}.hero-art.has-portrait .label-bottom{left:2%;bottom:7%}.contact-connect{padding:24px}.contact-connect h3{font-size:30px}.contact-channel{min-height:123px;padding:13px}.contact-icon-grid{gap:9px}.contact-channel .channel-icon,.contact-channel .channel-icon svg{width:27px;height:27px}.contact-channel strong{font-size:12px}.contact-channel small{font-size:9px}.contact-email{word-break:break-word}}
+@media(max-width:375px){.contact-icon-grid{grid-template-columns:1fr}.contact-channel{min-height:100px;padding:12px 16px}.contact-panel-label{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.portrait-paint,.portrait-panel,.hero-art.has-portrait .cyber-avatar{animation:none!important}}

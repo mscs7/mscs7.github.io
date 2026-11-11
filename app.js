@@ -88,7 +88,7 @@
   $('#credentials').innerHTML=arr(data.certifications).map(c=>{const url=linkURL(c.url);return `<article class="credential reveal"><div class="credential-top">${icon('award')}<span class="mono">${esc(c.date)}</span></div><h4>${esc(c.name)}</h4><p>${esc(c.issuer)}</p>${url?`<a class="text-link" href="${esc(url)}"${linkAttrs(url)}>Verify credential &#8599;</a>`:''}</article>`;}).join('')+`<article class="credential reveal"><div class="credential-top">${icon('book')}<span class="mono">${esc(education.year)}</span></div><h4>${esc(education.degree)}</h4><p>${esc(education.subject)}<br>${esc(education.university)}</p></article>`;
   text('#contact-description',contact.description || 'Have a cybersecurity role or a technical challenge in mind? Let\'s connect.');
   if(contact.title) $('#contact-title').innerHTML=esc(contact.title).replace(/\n/g,'<br>');
-  text('#contact-email',email);$('#contact-email').href=emailURL;
+  text('#contact-email',email);$('#contact-email').href=safeEmail?'https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(safeEmail):'#contact';$('#contact-email').target='_blank';$('#contact-email').rel='noopener noreferrer';
   if(p.phone){text('#contact-phone',p.phone);$('#contact-phone').href='tel:'+String(p.phone).replace(/[^+\d]/g,'');$('#contact-phone').hidden=false;}
   text('#footer-note',contact.note||'Security research. Practical engineering. Continuous learning.');
   text('#copyright',`${new Date().getFullYear()} ${name}.`);
@@ -101,27 +101,24 @@
     return `<div class="diagram" aria-hidden="true"><span class="diagram-label">CONCEPT / ILLUSTRATIVE VIEW</span>${content}</div>`;
   }
   const projects=arr(data.projects);let activeFilter='All';
-  const categories=['All',...new Set(projects.map(item=>item.category || 'Projects'))];
+  const categoryOrder=['Security','Research','Infrastructure','Networking','Engineering','Tools'];
+  const categories=['All',...categoryOrder.filter(c=>projects.some(p=>p.category===c)),...new Set(projects.map(item=>item.category||'Projects').filter(c=>!categoryOrder.includes(c)))];
   $('#project-filters').innerHTML=categories.map(c=>`<button type="button" class="filter-button" data-category="${esc(c)}" aria-pressed="${c==='All'}">${esc(c)}</button>`).join('');
+  function caseURL(project) { const slug=String(project.id||'').trim(); return /^[a-z0-9][a-z0-9-]{0,72}$/.test(slug) ? ((window.WORK_LIBRARY||[]).some(p=>p.id===slug) ? 'work/'+slug+'/' : 'work/index.html?project='+encodeURIComponent(slug)) : ''; }
   function renderProjects(){
     const selected=projects.map((project,index)=>({project,index})).filter(({project})=>activeFilter==='All'||(project.category||'Projects')===activeFilter);
-    $('#projects-grid').innerHTML=selected.map(({project:c,index})=>{const previewImage=window.PORTFOLIO_PREVIEW_ASSETS?.[c.image];const image=(typeof previewImage==='string' && /^data:image\/(png|jpeg|webp);base64,/.test(previewImage))?previewImage:linkURL(c.image);const isTool=c.category==='Tools';return `<article class="project-card"><div class="project-image">${image?`<img src="${esc(image)}" alt="${esc(c.imageAlt||c.title)}" loading="lazy" width="640" height="360" data-fallback="${esc(c.visual||'security')}">`:diagram(c.visual)}<span class="project-number">${String(index+1).padStart(2,'0')} / ${esc(c.category||'PROJECT')}</span></div><div class="project-content"><p class="project-eyebrow">${esc(c.eyebrow)}</p><h3>${esc(c.title)}</h3><p class="project-summary">${esc(c.summary)}</p>${tags(c.tags)}<div class="project-footer"><span class="project-status">${isTool?'PROTOTYPE / IN DEVELOPMENT':'SELECTED CONTRIBUTIONS'}</span><button class="project-open" type="button" data-project-index="${index}" aria-label="Explore ${esc(c.title)}">Explore ${icon('arrow-up-right')}</button></div></div></article>`;}).join('');
+    $('#projects-grid').innerHTML=selected.map(({project:c,index})=>{
+      const previewImage=window.PORTFOLIO_PREVIEW_ASSETS?.[c.image];
+      const image=(typeof previewImage==='string' && /^data:image\/(png|jpeg|webp);base64,/.test(previewImage))?previewImage:linkURL(c.image);
+      const href=caseURL(c);
+      const isTool=c.category==='Tools';
+      return `<article class="project-card"><div class="project-image">${image?`<img src="${esc(image)}" alt="${esc(c.imageAlt||c.title)}" loading="lazy" width="640" height="360" data-fallback="${esc(c.visual||'security')}">`:diagram(c.visual)}<span class="project-number">${String(index+1).padStart(2,'0')} / ${esc(c.category||'PROJECT')}</span></div><div class="project-content"><p class="project-eyebrow">${esc(c.eyebrow)}</p><h3>${esc(c.title)}</h3><p class="project-summary">${esc(c.summary)}</p>${tags(c.tags)}<div class="project-footer"><span class="project-status">${isTool?'PROTOTYPE / IN DEVELOPMENT':'CASE STUDY / SELECTED WORK'}</span><a class="project-open" href="${esc(href||'#work')}" aria-label="Read case study: ${esc(c.title)}">Read story ${icon('arrow-up-right')}</a></div></div></article>`;
+    }).join('');
     text('#work-count',`${String(selected.length).padStart(2,'0')} / ${String(projects.length).padStart(2,'0')} PROJECTS`);
     $$('.project-image img').forEach(img=>img.addEventListener('error',()=>{img.outerHTML=diagram(img.dataset.fallback);},{once:true}));
   }
   $('#project-filters').addEventListener('click',e=>{const btn=e.target.closest('[data-category]');if(!btn)return;activeFilter=btn.dataset.category;$$('[data-category]',$('#project-filters')).forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));renderProjects();});
   renderProjects();
-  const dialog=$('#project-dialog');let lastOpener=null;
-  function openProject(index,opener){
-    const c=projects[index];if(!c)return;
-    const repo=linkURL(c.repoUrl),demo=linkURL(c.demoUrl);
-    $('#dialog-content').innerHTML=`<p class="eyebrow dialog-eyebrow">${esc(c.eyebrow)}</p><h2 id="dialog-title">${esc(c.title)}</h2><p>${esc(c.scope||c.summary)}</p>${tags(c.tags)}<h3>My contribution</h3><ul>${arr(c.contributions).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>${c.outcome?`<h3>Outcome</h3><p>${esc(c.outcome)}</p>`:''}${c.confidentiality?`<div class="dialog-notice"><p>${esc(c.confidentiality)}</p></div>`:''}${repo||demo?`<div class="dialog-actions">${demo?`<a class="button button-primary" href="${esc(demo)}"${linkAttrs(demo)}>View project ${icon('arrow-up-right')}</a>`:''}${repo?`<a class="button button-outline" href="${esc(repo)}"${linkAttrs(repo)}>View repository ${icon('code')}</a>`:''}</div>`:''}`;
-    lastOpener=opener;dialog.showModal();document.body.style.overflow='hidden';$('#dialog-close').focus();
-  }
-  $('#projects-grid').addEventListener('click',e=>{const b=e.target.closest('[data-project-index]');if(b)openProject(Number(b.dataset.projectIndex),b);});
-  $('#dialog-close').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
-  dialog.addEventListener('close',()=>{document.body.style.overflow='';lastOpener?.focus({preventScroll:true});});
   const menu=$('#menu-toggle'),nav=$('#navigation');
   function closeMenu(){nav.classList.remove('is-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');menu.innerHTML=icon('menu');}
   menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';nav.classList.toggle('is-open',open);menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');menu.innerHTML=icon(open?'x':'menu');});
@@ -141,15 +138,27 @@
     try {if(!navigator.clipboard?.writeText)throw new Error('Fallback');await navigator.clipboard.writeText(email);notify('Email copied to clipboard.');}
     catch {const input=document.createElement('textarea');input.value=email;input.style.cssText='position:fixed;top:0;left:-10000px';document.body.append(input);input.select();let copied=false;try{copied=document.execCommand('copy');}catch{}input.remove();notify(copied?'Email copied to clipboard.':`Copy this address: ${email}`);}
   });
-  $('#contact-form').addEventListener('submit',e=>{
-    e.preventDefault();if(!e.target.reportValidity()||!safeEmail)return;
-    const f=new FormData(e.target);
-    const subject=String(f.get('topic')||contact.emailSubject||'Portfolio enquiry')+' - '+String(f.get('name')||'');
-    const body=`Hello ${p.shortName||name},\n\n${f.get('message')}\n\nFrom: ${f.get('name')}\nReply to: ${f.get('email')}`;
-    const url=`${emailURL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    text('#form-status','Opening your email app. Review and send the draft there; nothing has been sent by this website.');
-    window.location.href=url;
-  });
+  // Browser-based email draft links are explicit, not claimed as sent messages.
+  const nameForContact=encodeURIComponent(p.name || 'Mohammed Suhail C S');
+  const draftSubject=encodeURIComponent(contact.emailSubject||'Cybersecurity opportunity - Mohammed Suhail C S');
+  const gmailURL=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(safeEmail)}&su=${draftSubject}`;
+  const outlookURL=`https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(safeEmail)}&subject=${draftSubject}`;
+  const linkedInURL=linkURL(data.links?.linkedin);
+  const githubURL=linkURL(data.links?.github);
+  const channels=[
+    {key:'gmail',label:'Gmail',hint:'Compose in Gmail',url:gmailURL},
+    {key:'outlook',label:'Outlook',hint:'Compose in Outlook',url:outlookURL},
+    {key:'linkedin',label:'LinkedIn',hint:'Connect professionally',url:linkedInURL},
+    {key:'github',label:'GitHub',hint:'View source & projects',url:githubURL}
+  ].filter(channel=>channel.url && (channel.key==='gmail'||channel.key==='outlook'?!!safeEmail:true));
+  const channelIcon=key=>({
+    gmail:'<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M3 26V8l6 4.5V26H3z"/><path fill="#34A853" d="M23 12.5 29 8v18h-6z"/><path fill="#EA4335" d="M3 8 7 5l9 7 9-7 4 3-13 10z"/><path fill="#FBBC04" d="M23 12.5 29 8V5l-4-1-2 2z"/></svg>',
+    outlook:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect x="8" y="5" width="22" height="22" rx="3" fill="#0078D4"/><path d="M9 9h19v15H9z" fill="#2b88d8"/><path d="m10 12 9 7 9-7" fill="none" stroke="#d9f0ff" stroke-width="2"/><rect x="2" y="8" width="15" height="18" rx="2" fill="#0365aa"/><text x="9.5" y="21.2" text-anchor="middle" fill="white" font-size="12" font-weight="bold">O</text></svg>',
+    linkedin:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#0A66C2"/><path fill="white" d="M7 12h4v13H7zm2-6a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm6 6h4v2c.7-1.3 2-2.4 4-2.4 4.4 0 5 2.8 5 6.4v7h-4v-6.6c0-1.6-.1-3.4-2.2-3.4s-2.8 1.6-2.8 3.2V25h-4z"/></svg>',
+    github:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#22252d" stroke="#686a75"/><path d="M11 24c-5 1-5-3-7-3m23-7a9 9 0 0 0-2.5-6.2c.1-2.2-.4-3.1-.4-3.1s-1.5 0-3.4 1.4a17 17 0 0 0-9.4 0C9.4 4.7 7.9 4.7 7.9 4.7s-.5.9-.4 3.1A9 9 0 0 0 5 14c0 4.7 3.1 7.2 7.2 7.6-.7.6-1 1.3-1 2.4v2.3h10v-2.3c0-1.1-.3-1.8-1-2.4C24.3 21.2 27 18.7 27 14Z" fill="none" stroke="white" stroke-width="1.55"/></svg>'}[key]||icon('globe'));
+  const channelMarkup=channels.map(c=>`<a class="contact-channel" href="${esc(c.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(c.label)} - ${esc(c.hint)}"><span class="channel-icon channel-${esc(c.key)}">${channelIcon(c.key)}</span><strong>${esc(c.label)}</strong><small>${esc(c.hint)}</small><span class="channel-arrow" aria-hidden="true">&#8599;</span></a>`).join('');
+  $('#contact-icon-grid').innerHTML=channelMarkup;
+  $('#contact-socials').hidden=true; // The icon cards are the primary contact links.
   hydrateIcons();
   // Theme, motion preferences and progressive reveal. No content is hidden without JS.
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
