@@ -39,11 +39,18 @@
  $('#case-links').innerHTML=links.join('');
  $('#case-links').hidden=!links.length;
  // Diagram is original vector/CSS; never a representation of a client's actual network.
+ const illustration=window.CYBER_VISUALS?.render(slug,'detail');
+ if (illustration) {
+   const frame=$('.case-hero-art');frame.innerHTML=illustration;
+   frame.setAttribute('role','group');frame.setAttribute('aria-label','Interactive illustrative diagram; not a live network or scanner');
+   window.CYBER_VISUALS.activate(frame);
+ } else {
  const labels=arr(detail.stack).filter(s=>s.length<20).slice(0,3);
  while(labels.length<3) labels.push(['SYSTEM','RESEARCH','SECURITY'][labels.length]);
  $('#case-art-nodes').innerHTML=labels.map(l=>`<span class="case-art-node">${esc(l)}</span>`).join('');
  text('#case-art-focus',({lab:'RESEARCH / BUILD / VALIDATE',app:'APP / DATA / WORKFLOW',infra:'SYSTEM / NETWORK / SERVICE',security:'FIND / VERIFY / IMPROVE'})[project.visual]||'SECURITY / ENGINEERING');
  text('#case-art-bottom',project.category.toUpperCase()+' / CONCEPTUAL VIEW');
+ }
  const all=arr(portfolio.projects),rank=all.findIndex(p=>p.id===slug);
  const related=all.filter(p=>p.id!==slug && (p.category===project.category)).slice(0,2);
  if(related.length<2){for(const candidate of all){if(candidate.id!==slug && !related.some(x=>x.id===candidate.id)){related.push(candidate);if(related.length===2)break;}}}

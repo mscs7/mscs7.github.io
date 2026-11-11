@@ -111,11 +111,13 @@
       const previewImage=window.PORTFOLIO_PREVIEW_ASSETS?.[c.image];
       const image=(typeof previewImage==='string' && /^data:image\/(png|jpeg|webp);base64,/.test(previewImage))?previewImage:linkURL(c.image);
       const href=caseURL(c);
+      const illustration=window.CYBER_VISUALS?.render(c.id,'card');
       const isTool=c.category==='Tools';
-      return `<article class="project-card"><div class="project-image">${image?`<img src="${esc(image)}" alt="${esc(c.imageAlt||c.title)}" loading="lazy" width="640" height="360" data-fallback="${esc(c.visual||'security')}">`:diagram(c.visual)}<span class="project-number">${String(index+1).padStart(2,'0')} / ${esc(c.category||'PROJECT')}</span></div><div class="project-content"><p class="project-eyebrow">${esc(c.eyebrow)}</p><h3>${esc(c.title)}</h3><p class="project-summary">${esc(c.summary)}</p>${tags(c.tags)}<div class="project-footer"><span class="project-status">${isTool?'PROTOTYPE / IN DEVELOPMENT':'CASE STUDY / SELECTED WORK'}</span><a class="project-open" href="${esc(href||'#work')}" aria-label="Read case study: ${esc(c.title)}">Read story ${icon('arrow-up-right')}</a></div></div></article>`;
+      return `<article class="project-card"><div class="project-image">${illustration?illustration:image?`<img src="${esc(image)}" alt="${esc(c.imageAlt||c.title)}" loading="lazy" width="640" height="360" data-fallback="${esc(c.visual||'security')}">`:diagram(c.visual)}<span class="project-number">${String(index+1).padStart(2,'0')} / ${esc(c.category||'PROJECT')}</span></div><div class="project-content"><p class="project-eyebrow">${esc(c.eyebrow)}</p><h3>${esc(c.title)}</h3><p class="project-summary">${esc(c.summary)}</p>${tags(c.tags)}<div class="project-footer"><span class="project-status">${isTool?'PROTOTYPE / IN DEVELOPMENT':'CASE STUDY / SELECTED WORK'}</span><a class="project-open" href="${esc(href||'#work')}" aria-label="Read case study: ${esc(c.title)}">Read story ${icon('arrow-up-right')}</a></div></div></article>`;
     }).join('');
     text('#work-count',`${String(selected.length).padStart(2,'0')} / ${String(projects.length).padStart(2,'0')} PROJECTS`);
     $$('.project-image img').forEach(img=>img.addEventListener('error',()=>{img.outerHTML=diagram(img.dataset.fallback);},{once:true}));
+    window.CYBER_VISUALS?.activate($('#projects-grid'));
   }
   $('#project-filters').addEventListener('click',e=>{const btn=e.target.closest('[data-category]');if(!btn)return;activeFilter=btn.dataset.category;$$('[data-category]',$('#project-filters')).forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));renderProjects();});
   renderProjects();

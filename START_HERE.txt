@@ -1,0 +1,111 @@
+SUHAIL.CS - PORTFOLIO V3 / SAFE GITHUB PAGES UPDATE
+===============================================
+
+THIS IS THE SAFE UPDATE FOR YOUR EXISTING PORTFOLIO:
+https://github.com/mscs7/mscs7.github.io
+
+WHAT IS NEW
+-----------
+- 13 distinct animated project-card and case-study illustrations.
+- Dell server rack and simulated Proxmox-style command terminal.
+- Animated VLAN topology, sample DNS/edge path, app and identity demos.
+- SIEM severity routing example, CTF board, incident chain, security workflow.
+- Distinct ScopeForge and WP Scope Workbench visuals. Still prototypes.
+- Clean free-floating crimson section line + clickable dots (no oval frame).
+- Work editor: tools/work-editor.html -> exports new content.js.
+- Preserves Google indexing files, LinkedIn/GitHub cards and Dubai setting.
+
+SAFETY
+------
+- All displays are illustrative and static. No client topology or secrets.
+- The terminal does not execute commands or expose the visitor's real IP.
+- The network and tool graphics do not scan or connect to any system.
+- No personal data is collected by the visual dashboards.
+- WP Scope Workbench / ScopeForge remain local Python prototypes awaiting
+  your own validation; website demonstrations are not public scanners.
+
+PUBLISH IN GITHUB - WINDOWS / CHROME
+-----------------------------------
+1. Go to github.com/mscs7/mscs7.github.io. Code -> Download ZIP (BACKUP).
+2. Extract this V3 SAFE UPDATE ZIP to a local folder.
+3. In your repository, open the branch that GitHub Pages publishes.
+4. Choose Add file -> Upload files.
+5. Drag ALL WEBSITE CONTENTS from the extracted folder into the upload
+   area (NOT the enclosing V3_Safe_Update folder and NOT the ZIP).
+6. Paths such as index.html, v3-visuals.js, styles.css, case-study.js,
+   and folders work/ and tools/ must sit beside content.js in repo ROOT.
+7. Commit changes. Verify deployment in GitHub Actions.
+8. Open https://mscs7.github.io/ and hard-refresh with Ctrl+Shift+R.
+9. Try the Tools filter, 13 Read story links, terminal, red section dots,
+   Gmail/Outlook/LinkedIn/GitHub, light mode and motion pause.
+
+NEVER DELETE / OVERWRITE THESE EXISTING USER FILES:
+content.js
+work-content.js
+projects/               (including projects/wpscope/ and projects/scopeforge/)
+assets/                 (your photo, graphics and CV PDFs)
+Any extra files in your repository
+
+The SAFE ZIP does NOT contain those files or folders. It only includes
+website code, work page templates and the new work editor.
+
+WHICH FILE DO I EDIT LATER?
+---------------------------
+Profile details and main text:    content.js
+LinkedIn, GitHub, Dubai location: site-config.js
+All 13 case studies:             tools/work-editor.html (recommended)
+                                     -> Download content.js -> upload it
+Existing tool showcases:          projects/wpscope/ and projects/scopeforge/
+Interactive diagram design:       v3-visuals.js
+Animations, colors:               v3-visuals.css or styles.css
+Home layout, section headings:    index.html
+Indexing file:                   sitemap.xml
+Site URL and crawler notice:     robots.txt
+
+BEST WAY TO EDIT WORK STORIES
+----------------------------
+1. After publishing, visit:
+   https://mscs7.github.io/tools/work-editor.html
+2. Pick a work page on the left.
+3. Edit title, summary, skills, scope, contributions, outcomes, and the
+   case-study story fields. Do NOT change the permanent ID.
+4. Click 'Download updated content.js'. This downloads a NEW FILE locally.
+5. In GitHub, replace the root content.js with the downloaded version.
+6. Commit and refresh the live website.
+The editor does NOT edit GitHub by itself. The old work-content.js remains
+as a fallback and must not be deleted.
+
+EDIT LOCATION OR SOCIAL URL
+---------------------------
+Open site-config.js in GitHub -> pencil/Edit -> change values -> commit.
+Example: portfolio.profile.location = 'Dubai, United Arab Emirates';
+
+SEO / GOOGLE SEARCH CONSOLE
+---------------------------
+The sitemap opens as valid-looking XML in the user's screenshot; the
+message 'This XML file does not appear to have any style information'
+is NORMAL. Google Search Console's new 'Couldn't fetch' status need not
+mean invalid XML. Inspect the status details and retry ONLY if there's a
+specific issue or after a reasonable processing delay.
+
+Under Sitemaps, submit: sitemap.xml
+The sitemap URL must be: https://mscs7.github.io/sitemap.xml
+Under URL Inspection, request indexing for a small number of priority
+pages ONCE. Google may take days to weeks and ranking is not guaranteed.
+A sitemap does not make Google index all pages immediately.
+
+TO ADD A BRAND-NEW CASE STUDY LATER
+----------------------------------
+It needs: a new project entry in content.js (or work-content.js),
+its own work/<new-id>/index.html file with the same data-project ID,
+and an entry in sitemap.xml. New artwork requires a new visual module
+in v3-visuals.js. Start by copying a current work folder, then update
+its page title, canonical link and description; do not copy any client
+secrets. Ask for help if you want to add new custom animated modules.
+
+NOTES
+-----
+- Motion respects the Pause button and reduced-motion preference.
+- Native browser scroll remains enabled; the dots are section shortcuts.
+- Uploaded assets are public when you commit them to GitHub Pages.
+- The included tool/editor files are static and do not grant write access.

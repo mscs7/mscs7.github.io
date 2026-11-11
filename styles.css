@@ -106,3 +106,16 @@ html { scrollbar-color: var(--accent) var(--bg); scrollbar-width: thin; }
 @media(max-width:1199px), (pointer:coarse) { .section-rail { display:none; } }
 @media(prefers-reduced-motion:reduce){.section-rail-fill,.rail-tooltip,.rail-dot{transition:none!important}}
 @media print {.section-rail{display:none!important}}
+
+/* V3: floating crimson line + dots only; no second scrollbar or oval shell. */
+html { scrollbar-width: thin; scrollbar-color: #a42c4c var(--bg); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { border: 0; background: #9e2a49; border-radius: 12px; }
+.section-rail { width: 30px; right: 17px; padding: 7px 0; gap: 9px;
+  background: transparent; border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+.section-rail-track,.section-rail-fill{top:24px;left:calc(50% - 1px)}
+.section-rail-track{bottom:24px}
+.rail-stop{width:30px;height:30px}
+.rail-dot{width:9px;height:9px;background:var(--bg);border-color:var(--soft)}
+.rail-stop.active .rail-dot,.rail-stop:hover .rail-dot,.rail-stop:focus-visible .rail-dot {box-shadow:0 0 0 3px var(--accent-soft),0 0 12px var(--glow)}
+@media (max-width:1199px),(pointer:coarse){.section-rail{display:none}}
