@@ -2,6 +2,86 @@
    Existing project summaries and real links win; this file only fills missing project IDs and detailed sections.
    Editing tip: the local editor loads this file so all work items can be edited and exported together. */
 window.WORK_LIBRARY = [
+  // SOCFORGE_PROJECT_START
+  {
+    "id": "socforge",
+    "category": "Tools",
+    "eyebrow": "SOC AUTOMATION / ALERT TRIAGE / INCIDENT RESPONSE LAB",
+    "title": "SOCForge. From alert to investigation.",
+    "summary": "A working local SOC automation prototype: Wazuh-format alert ingestion, event correlation, explainable risk scoring, incident queue and analyst-guided response simulations.",
+    "visual": "security",
+    "image": "projects/socforge/preview.png",
+    "imageAlt": "Actual SOCForge local dashboard showing three synthetic incident cases and triage metrics",
+    "tags": [
+      "Python / FastAPI",
+      "Wazuh-format alerts",
+      "SOC triage",
+      "n8n adapter"
+    ],
+    "scope": "Personal SOC automation lab created with AI assistance and tested against synthetic events. The Python API and dashboard run locally; the Wazuh integration adapter was tested with sample JSON, not a live Wazuh Manager. The n8n workflow is a template, not a verified live deployment.",
+    "contributions": [
+      "Defined a SOC workflow for deduplicating security alerts, correlating host-level activity, prioritizing risks and documenting investigations.",
+      "Used AI-assisted implementation to build a FastAPI + SQLite application and a browser-based analyst console; retained source and reproducible tests.",
+      "Verified the built-in demo of 9 synthetic alerts grouped into 3 incidents and the API test suite (8 passing tests in the authoring environment).",
+      "Added a Wazuh-shaped event adapter, optional n8n webhook notifications and approval-only, simulated containment actions."
+    ],
+    "outcome": "A runnable local portfolio prototype with 8 passing API tests, a browser smoke test, and a synthetic end-to-end triage demonstration. Not deployed to a production SOC; real Wazuh, n8n and Azure connections remain optional follow-on tasks.",
+    "confidentiality": "All public events, incident labels and IP addresses are synthetic. Response actions only simulate approval; they do not isolate endpoints or block IPs. No client logs, secrets, live TI lookups or production SIEM metrics are shown.",
+    "repoUrl": "https://github.com/mscs7/SOCForge",
+    "demoUrl": "projects/socforge/index.html",
+    "caseStudy": {
+      "kicker": "Build the workflow that follows an alert.",
+      "lede": "SOCForge takes controlled lab signals through alert intake, deduplication, prioritization and a human-reviewed investigation workflow. The real application runs locally; the public preview uses synthetic, in-browser data.",
+      "approach": [
+        [
+          "01 / Ingest",
+          "Receive generic or Wazuh-shaped JSON and normalize evidence into host-, category- and time-based records."
+        ],
+        [
+          "02 / Correlate",
+          "Suppress duplicate events and group nearby related alerts into incident cases with explainable severity factors and MITRE ATT&CK references."
+        ],
+        [
+          "03 / Investigate",
+          "Triage cases in a browser, change status and ownership, record notes, export incident reports and approve simulation-only responses."
+        ],
+        [
+          "04 / Automate",
+          "Optionally forward incident notifications through an n8n-compatible webhook; the live integration still requires your own configuration."
+        ]
+      ],
+      "notes": "The project combines prior web-lab Wazuh/Splunk detection work and n8n alert routing with a more complete analyst workflow. The synthetic Windows account-creation scenario reflects a general attack pattern, not customer telemetry.",
+      "learning": "Being able to explain event correlation, false positives, confidence and response approvals matters more than showing a dramatic alert count. Local unit tests do not establish production readiness.",
+      "highlights": [
+        [
+          "Synthetic dataset",
+          "9 alerts / 3 cases"
+        ],
+        [
+          "Tests",
+          "8 API checks passed"
+        ],
+        [
+          "Response",
+          "Approval-only simulation"
+        ]
+      ],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "SQLite",
+        "JavaScript",
+        "Docker Compose",
+        "Wazuh JSON",
+        "n8n webhook adapter",
+        "pytest",
+        "MITRE ATT&CK"
+      ],
+      "status": "Personal lab prototype / tested locally"
+    }
+  },
+  // SOCFORGE_PROJECT_END
+
   {
     "id": "security-assessments",
     "category": "Security",
